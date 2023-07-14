@@ -1,0 +1,5 @@
+Un systeme de connexion sécurisé
+Un systeme d'inscription pour user et admin
+Une table produits + clé etrangère user id
+Chaque utilisateur accèdent a ses produits
+La page accueil affiche tous les produits paginé (4 par page)
