@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset("css/bootstrap.min.css") }}">
+            <link rel="stylesheet" href="{{ asset("css/styles.css") }}">
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <!--FLASH BAGS-->
+        {% for message in app.flashes("success") %}
+            <div class="alert alert-success p-3 mt-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes("danger") %}
+            <div class="alert alert-danger p-3 mt-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+
+        {% if app.user %}
+            {% block navbar %}
+                {% include "includes/navbar.html.twig" %}
+            {% endblock %}
+        {% endif %}
+
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

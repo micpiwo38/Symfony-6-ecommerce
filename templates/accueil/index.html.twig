@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ACCUEIL{% endblock %}
+
+{% block body %}
+
+        <div class="container-fluid bg-white p-3 m-3 rounded w-75 mx-auto">
+            <h1 class="text-danger">Liste de vos Produits</h1>
+
+            <a class="btn btn-outline-info" href="{{ path('app_produits_new') }}">Ajouter un produit</a>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom_produit</th>
+                    <th>Description_produit</th>
+                    <th>Prix_produit</th>
+                    <th>Image_produit</th>
+                    <th>Stock_produit</th>
+                    <th>Date_produit</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        <td>{{ produit.id }}</td>
+                        <td>{{ produit.nomProduit }}</td>
+                        <td>{{ produit.descriptionProduit }}</td>
+                        <td class="text-success">{{ produit.prixProduit }} €</td>
+                        <td>
+                            <img src="/img{{ asset(produit.imageProduit ) }}" class="img-fluid" alt="{{ produit.nomProduit }}" title="{{ produit.nomProduit }}">
+                        </td>
+                        <td>{{ produit.stockProduit ? 'OUI' : 'NON' }}</td>
+                        <td>{{ produit.dateProduit ? produit.dateProduit|date('d/m/Y') : '' }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('app_produits_show', {'id': produit.id}) }}">Détails</a>
+                            <a class="btn btn-info mt-2" href="{{ path('app_produits_edit', {'id': produit.id}) }}">Editer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+{% endblock %}

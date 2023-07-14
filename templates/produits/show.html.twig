@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du produits{% endblock %}
+
+{% block body %}
+    <div class="container w-75 bg-white p-3 mt-3 rounded shadow">
+        <h1 class="text-warning">Détails du produits</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_produit</th>
+                <td>{{ produit.nomProduit }}</td>
+            </tr>
+            <tr>
+                <th>Description_produit</th>
+                <td>{{ produit.descriptionProduit }}</td>
+            </tr>
+            <tr>
+                <th>Prix_produit</th>
+                <td>{{ produit.prixProduit }}</td>
+            </tr>
+            <tr>
+                <th>Image_produit</th>
+                <td>
+                    <img src="/img{{ asset(produit.imageProduit ) }}" class="img-fluid" alt="{{ produit.nomProduit }}" title="{{ produit.nomProduit }}">
+                </td>
+            </tr>
+            <tr>
+                <th>Stock_produit</th>
+                <td>{{ produit.stockProduit ? 'OUI' : 'NON' }}</td>
+            </tr>
+            <tr>
+                <th>Date_produit</th>
+                <td>{{ produit.dateProduit ? produit.dateProduit|date('d/m/Y') : '' }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-warning" href="{{ path('app_produits_index') }}">Retour</a>
+
+        <a class="btn btn-info" href="{{ path('app_produits_edit', {'id': produit.id}) }}">Editer</a>
+
+        {{ include('produits/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}
